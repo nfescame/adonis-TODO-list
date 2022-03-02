@@ -68,8 +68,6 @@ class TaskController {
     task.merge(data);
     await task.save();
 
-    console.log(response);
-
     return response.redirect("/tasks");
   }
 
