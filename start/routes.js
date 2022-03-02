@@ -19,5 +19,16 @@ const TaskController = require("../app/Controllers/Http/TaskController");
 const Route = use("Route");
 
 Route.on("/").render("home");
-Route.on("/tasks").render("tasks");
+
+Route.get("/tasks", "TaskController.index");
+
 Route.on("/add").render("add");
+
+Route.post("/add", "TaskController.store");
+
+Route.get("/task/:id", "TaskController.show");
+
+Route.get("/delete/:id", "TaskController.destroy");
+
+Route.get("/edit/:id", "TaskController.edit");
+Route.put("/task/:id", "TaskController.update");

@@ -1,12 +1,13 @@
 @layout('main')
 @section('content')
-<h1 class="mb-3">New task</h1>
-<form action="{{route('/add')}}" method="POST">
+<h1 class="mb-3">Edit task</h1>
+<form action="{{'/task/'+ task.id +'?_method=PUT'}}" method="POST">
+
   {{csrfField()}}
   <div class="mb_3">
     <label for="">Title</label>
     <input type="text" class="form-control {{ hasErrorFor('title') ? 'is-invalid': ""}}"
-    name="title" placeholder="Your title" value="">
+    name="title" placeholder="Your title" value="{{task.title}}">
     {{elIf(' <div class="invalid-feedback">$self</div>', getErrorFor('title'), hasErrorFor('title') )}}
   </div>
 
@@ -14,7 +15,7 @@
   <label for="">Body</label>
   <textarea name="body" class="form-control {{ hasErrorFor('body') ? 'is-invalid': ""}}"
   placeholder="body"
-  ></textarea>
+  >{{task.body}}</textarea>
   {{elIf(' <div class="invalid-feedback">$self</div>', getErrorFor('body'), hasErrorFor('body') )}}
 </div>
 

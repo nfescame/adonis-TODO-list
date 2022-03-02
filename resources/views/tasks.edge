@@ -1,12 +1,33 @@
 @layout('main')
 @section('content')
-<h1>Tasks</h1>
-<div class="list-group">
-  <div class="alert alert-success" role="alert">
-    A simple success alert—check it out!
+<div class="d-flex justify-content-between">
+  <h1>{{title}}</h1>
+  <div>
+    <a href="/add" class="btn btn-primary btn-lg">New task</a>
   </div>
-  <a href="#" class="list-group-item list-group-item-action">A second link item</a>
-  <a href="#" class="list-group-item list-group-item-action">A third link item</a>
-  <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
+</div>
+
+
+@if(old('notification'))
+  <div class="alert alert-success" role="alert">
+    {{old('notification')}}
+  </div class='list-group'>
+@endif
+
+<div class="list-group">
+  <div class="d-flex justify-content-between ">
+    <p>id</p>
+    <p>title</p>
+    <p>body</p>
+  </div>
+  @each(item in tasks)
+  <a href="/task/{{item.id}}" class="list-group-item list-group-item-action">
+    <div class="d-flex justify-content-between">
+      <p>{{item.id}}</p>
+      <p>{{item.title}}</p>
+      <p>{{item.body}}</p>
+    </div>
+  </a>
+  @endeach
 </div>
 @endsection
