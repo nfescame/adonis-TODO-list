@@ -15,19 +15,25 @@
 @endif
 
 <div class="list-group">
-  <div class="d-flex justify-content-between ">
-    <p>id</p>
-    <p>title</p>
-    <p>body</p>
-  </div>
-  @each(item in tasks)
-  <a href="/task/{{item.id}}" class="list-group-item list-group-item-action">
-    <div class="d-flex justify-content-between">
-      <p>{{item.id}}</p>
-      <p>{{item.title}}</p>
-      <p>{{item.body}}</p>
-    </div>
-  </a>
-  @endeach
+
+  <table class="table table-dark table-hover">
+    <thead>
+      <tr class="text-primary">
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Body</th>
+      </tr>
+    </thead>
+   @each(item in tasks)
+    <tbody>
+      <tr class="text-uppercase">
+        <th scope="row"><a href="/task/{{item.id}}" class="text-decoration-none link-secondary">{{item.id}}</a></th>
+        <td><a href="/task/{{item.id}}" class="text-decoration-none link-secondary">{{item.title}}</a></td>
+        <td><a href="/task/{{item.id}}" class="text-decoration-none link-secondary">{{item.body}}</a></td>
+
+      </tr>
+    </tbody>
+    @endeach
+  </table>
 </div>
 @endsection
