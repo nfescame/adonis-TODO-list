@@ -5,7 +5,7 @@ class TaskController {
   async index({ view }) {
     const tasks = await Task.all();
 
-    return view.render("tasks", {
+    return view.render("task", {
       title: "Latest tasks",
       tasks: tasks.toJSON(),
     });
@@ -42,7 +42,7 @@ class TaskController {
 
     session.flash({ notification: `Task ( ${task.title} ) added!` });
 
-    return response.redirect("/tasks");
+    return response.redirect("/task");
   }
 
   async show({ params, view }) {
@@ -61,14 +61,14 @@ class TaskController {
     });
   }
 
-  async update({ params, request, response, session }) {
+  async update({ params, request, response }) {
     const task = await Task.find(params.id);
     const data = request.only(["title", "body"]);
 
     task.merge(data);
     await task.save();
 
-    return response.redirect("/tasks");
+    return response.redirect("/task");
   }
 
   async destroy({ params, response, session }) {
@@ -78,7 +78,7 @@ class TaskController {
 
     session.flash({ notification: `Task ( ${task.title} ) deleted! ` });
 
-    return response.redirect("/tasks");
+    return response.redirect("/task");
   }
 }
 

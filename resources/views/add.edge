@@ -1,7 +1,7 @@
 @layout('main')
 @section('content')
 <h1 class="mb-3">New task</h1>
-<form action="{{route('/add')}}" method="POST">
+<form action="{{route('/task')}}" method="POST">
   {{csrfField()}}
   <div class="mb_3">
     <label for="">Title</label>

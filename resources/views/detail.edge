@@ -1,15 +1,22 @@
 @layout('main')
 @section('content')
+
 <div class="jumbotron">
-  <h1>{{task.title}}</h1>
+  <div class="d-flex justify-content-between">
+    <h1>{{task.title}}</h1>
+    <form  action="{{'/task/'+ task.id +'?_method=DELETE'}}" method="POST">
+      {{csrfField()}}
+      <button class="btn btn-danger" type="submit">Delete</button>
+    </form>
+  </div>
   <p class="lead">
     {{task.body}}
   </p>
   <hr class="my-4">
+
   <div class="d-flex justify-content-between px-5">
-    <a href="/tasks" class="btn btn-primary btn-lg w-25">Go back</a>
-    <a href="/delete/{{task.id}}" class="btn btn-danger btn-lg w-25">Delete</a>
-    <a href="/edit/{{task.id}}" class="btn btn-success btn-lg w-25">Edit</a>
+    <a href="/task" class="btn btn-primary btn-lg w-25">Go back</a>
+    <a href="/task/{{task.id}}/edit" class="btn btn-success btn-lg w-25">Edit</a>
   </div>
 </div>
 @endsection
